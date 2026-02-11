@@ -1,0 +1,14 @@
+# Large profiling data files
+*.sqlite
+*.nsys-rep
+*.ncu-rep
+*.pt.trace.json
+*.pt.trace.json.gz
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Logs
+*.log

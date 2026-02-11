@@ -1,0 +1,10 @@
+| Decision               | Choice                                   | Rationale                                                   |
+| ---------------------- | ---------------------------------------- | ----------------------------------------------------------- |
+| **Language**           | Python + asyncio                         | Matches vLLM ecosystem, handles high concurrency            |
+| **Protocol**           | HTTP (OpenAI-compatible)                 | Works with any vLLM deployment out of the box               |
+| **Token counting**     | Character-based estimate (4 chars/token) | Fast, no tokenizer dependency, sufficient for load gen      |
+| **Content generation** | Template-based with vocabulary           | Deterministic, fast, no external LLM dependency             |
+| **Arrival processes**  | Poisson, Hawkes, Trace Replay, Cyclical  | Covers baseline, burstiness, reality, and business patterns |
+| **Execution modes**    | Open-loop + Closed-loop                  | Open for saturation testing, closed for latency curves      |
+| **Output format**      | JSON with full telemetry                 | Builds your data moat: (profile, config, outcome) tuples    |
+

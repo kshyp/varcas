@@ -1,0 +1,7 @@
+| Profile                     | Purpose                   | What It Tests                              |
+| --------------------------- | ------------------------- | ------------------------------------------ |
+| `rag_small` to `rag_xlarge` | 500 to 12K token contexts | Chunked prefill, KV-cache, memory pressure |
+| `burst`                     | Hawkes process traffic    | Tail latency, queue behavior, stability    |
+| `mixed`                     | 60/30/10 chat/RAG/code    | Realistic heterogeneous workloads          |
+| `closed_loop`               | Fixed concurrency         | Latency curves, saturation points          |
+

@@ -1,0 +1,53 @@
+{
+  "summary": {
+    "best_throughput": {
+      "batch_size": 1,
+      "throughput_rps": 19.716407658027002
+    },
+    "best_latency": {
+      "batch_size": 4,
+      "latency_p50_ms": 2803.07674407959
+    },
+    "recommendation": "Batch size 1 is sufficient; larger batches show diminishing returns"
+  },
+  "comparison": [
+    {
+      "batch_size": 1,
+      "throughput_rps": 19.716407658027002,
+      "throughput_tok_s": 38.29661555271007,
+      "ttft_p50_ms": 36501.46818161011,
+      "tpot_p50_ms": 26.377275586128235,
+      "latency_p50_ms": 38739.150524139404
+    },
+    {
+      "batch_size": 4,
+      "throughput_rps": 19.26735490458177,
+      "throughput_tok_s": 5.238051463236948,
+      "ttft_p50_ms": 234.44032669067383,
+      "tpot_p50_ms": 29.781731963157654,
+      "latency_p50_ms": 2803.07674407959
+    },
+    {
+      "batch_size": 8,
+      "throughput_rps": 0.06672438979219306,
+      "throughput_tok_s": 9.89189078669262,
+      "ttft_p50_ms": 24853.934288024902,
+      "tpot_p50_ms": 26.946069439538093,
+      "latency_p50_ms": 27155.798316001892
+    },
+    {
+      "batch_size": 16,
+      "throughput_rps": 0.4679814646356508,
+      "throughput_tok_s": 69.97994258676678,
+      "ttft_p50_ms": 22162.87922859192,
+      "tpot_p50_ms": 41.37517248104545,
+      "latency_p50_ms": 25092.172145843506
+    }
+  ],
+  "improvement": {
+    "baseline_batch": 1,
+    "optimized_batch": 16,
+    "throughput_improvement_pct": -97.6264364545885,
+    "latency_change_pct": -35.22787204585733
+  }
+}

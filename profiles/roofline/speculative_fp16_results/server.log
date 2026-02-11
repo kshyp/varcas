@@ -1,0 +1,88 @@
+[0;36m(APIServer pid=61568)[0;0m INFO 02-11 10:52:59 [utils.py:325] 
+[0;36m(APIServer pid=61568)[0;0m INFO 02-11 10:52:59 [utils.py:325]        █     █     █▄   ▄█
+[0;36m(APIServer pid=61568)[0;0m INFO 02-11 10:52:59 [utils.py:325]  ▄▄ ▄█ █     █     █ ▀▄▀ █  version 0.15.1
+[0;36m(APIServer pid=61568)[0;0m INFO 02-11 10:52:59 [utils.py:325]   █▄█▀ █     █     █     █  model   meta-llama/Llama-2-7b-hf
+[0;36m(APIServer pid=61568)[0;0m INFO 02-11 10:52:59 [utils.py:325]    ▀▀  ▀▀▀▀▀ ▀▀▀▀▀ ▀     ▀
+[0;36m(APIServer pid=61568)[0;0m INFO 02-11 10:52:59 [utils.py:325] 
+[0;36m(APIServer pid=61568)[0;0m INFO 02-11 10:52:59 [utils.py:261] non-default args: {'model': 'meta-llama/Llama-2-7b-hf', 'dtype': 'float16', 'max_model_len': 2048, 'enforce_eager': True, 'max_num_seqs': 8, 'speculative_config': {'method': 'draft_model', 'model': 'JackFram/llama-160m', 'num_speculative_tokens': 5}}
+[0;36m(APIServer pid=61568)[0;0m Traceback (most recent call last):
+[0;36m(APIServer pid=61568)[0;0m   File "/opt/conda/lib/python3.10/site-packages/huggingface_hub/utils/_http.py", line 403, in hf_raise_for_status
+[0;36m(APIServer pid=61568)[0;0m     response.raise_for_status()
+[0;36m(APIServer pid=61568)[0;0m   File "/opt/conda/lib/python3.10/site-packages/requests/models.py", line 1024, in raise_for_status
+[0;36m(APIServer pid=61568)[0;0m     raise HTTPError(http_error_msg, response=self)
+[0;36m(APIServer pid=61568)[0;0m requests.exceptions.HTTPError: 401 Client Error: Unauthorized for url: https://huggingface.co/meta-llama/Llama-2-7b-hf/resolve/main/config.json
+[0;36m(APIServer pid=61568)[0;0m 
+[0;36m(APIServer pid=61568)[0;0m The above exception was the direct cause of the following exception:
+[0;36m(APIServer pid=61568)[0;0m 
+[0;36m(APIServer pid=61568)[0;0m Traceback (most recent call last):
+[0;36m(APIServer pid=61568)[0;0m   File "/opt/conda/lib/python3.10/site-packages/transformers/utils/hub.py", line 479, in cached_files
+[0;36m(APIServer pid=61568)[0;0m     hf_hub_download(
+[0;36m(APIServer pid=61568)[0;0m   File "/opt/conda/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+[0;36m(APIServer pid=61568)[0;0m     return fn(*args, **kwargs)
+[0;36m(APIServer pid=61568)[0;0m   File "/opt/conda/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1007, in hf_hub_download
+[0;36m(APIServer pid=61568)[0;0m     return _hf_hub_download_to_cache_dir(
+[0;36m(APIServer pid=61568)[0;0m   File "/opt/conda/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1114, in _hf_hub_download_to_cache_dir
+[0;36m(APIServer pid=61568)[0;0m     _raise_on_head_call_error(head_call_error, force_download, local_files_only)
+[0;36m(APIServer pid=61568)[0;0m   File "/opt/conda/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1655, in _raise_on_head_call_error
+[0;36m(APIServer pid=61568)[0;0m     raise head_call_error
+[0;36m(APIServer pid=61568)[0;0m   File "/opt/conda/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1543, in _get_metadata_or_catch_error
+[0;36m(APIServer pid=61568)[0;0m     metadata = get_hf_file_metadata(
+[0;36m(APIServer pid=61568)[0;0m   File "/opt/conda/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+[0;36m(APIServer pid=61568)[0;0m     return fn(*args, **kwargs)
+[0;36m(APIServer pid=61568)[0;0m   File "/opt/conda/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 1460, in get_hf_file_metadata
+[0;36m(APIServer pid=61568)[0;0m     r = _request_wrapper(
+[0;36m(APIServer pid=61568)[0;0m   File "/opt/conda/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 283, in _request_wrapper
+[0;36m(APIServer pid=61568)[0;0m     response = _request_wrapper(
+[0;36m(APIServer pid=61568)[0;0m   File "/opt/conda/lib/python3.10/site-packages/huggingface_hub/file_download.py", line 307, in _request_wrapper
+[0;36m(APIServer pid=61568)[0;0m     hf_raise_for_status(response)
+[0;36m(APIServer pid=61568)[0;0m   File "/opt/conda/lib/python3.10/site-packages/huggingface_hub/utils/_http.py", line 420, in hf_raise_for_status
+[0;36m(APIServer pid=61568)[0;0m     raise _format(GatedRepoError, message, response) from e
+[0;36m(APIServer pid=61568)[0;0m huggingface_hub.errors.GatedRepoError: 401 Client Error. (Request ID: Root=1-698c5f8b-307819b04c04e9f71818b69e;025220ec-8617-4858-ace6-ae693a5fb8c2)
+[0;36m(APIServer pid=61568)[0;0m 
+[0;36m(APIServer pid=61568)[0;0m Cannot access gated repo for url https://huggingface.co/meta-llama/Llama-2-7b-hf/resolve/main/config.json.
+[0;36m(APIServer pid=61568)[0;0m Access to model meta-llama/Llama-2-7b-hf is restricted. You must have access to it and be authenticated to access it. Please log in.
+[0;36m(APIServer pid=61568)[0;0m 
+[0;36m(APIServer pid=61568)[0;0m The above exception was the direct cause of the following exception:
+[0;36m(APIServer pid=61568)[0;0m 
+[0;36m(APIServer pid=61568)[0;0m Traceback (most recent call last):
+[0;36m(APIServer pid=61568)[0;0m   File "/opt/conda/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+[0;36m(APIServer pid=61568)[0;0m     return _run_code(code, main_globals, None,
+[0;36m(APIServer pid=61568)[0;0m   File "/opt/conda/lib/python3.10/runpy.py", line 86, in _run_code
+[0;36m(APIServer pid=61568)[0;0m     exec(code, run_globals)
+[0;36m(APIServer pid=61568)[0;0m   File "/opt/conda/lib/python3.10/site-packages/vllm/entrypoints/openai/api_server.py", line 991, in <module>
+[0;36m(APIServer pid=61568)[0;0m     uvloop.run(run_server(args))
+[0;36m(APIServer pid=61568)[0;0m   File "/opt/conda/lib/python3.10/site-packages/uvloop/__init__.py", line 82, in run
+[0;36m(APIServer pid=61568)[0;0m     return loop.run_until_complete(wrapper())
+[0;36m(APIServer pid=61568)[0;0m   File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+[0;36m(APIServer pid=61568)[0;0m   File "/opt/conda/lib/python3.10/site-packages/uvloop/__init__.py", line 61, in wrapper
+[0;36m(APIServer pid=61568)[0;0m     return await main
+[0;36m(APIServer pid=61568)[0;0m   File "/opt/conda/lib/python3.10/site-packages/vllm/entrypoints/openai/api_server.py", line 919, in run_server
+[0;36m(APIServer pid=61568)[0;0m     await run_server_worker(listen_address, sock, args, **uvicorn_kwargs)
+[0;36m(APIServer pid=61568)[0;0m   File "/opt/conda/lib/python3.10/site-packages/vllm/entrypoints/openai/api_server.py", line 938, in run_server_worker
+[0;36m(APIServer pid=61568)[0;0m     async with build_async_engine_client(
+[0;36m(APIServer pid=61568)[0;0m   File "/opt/conda/lib/python3.10/contextlib.py", line 199, in __aenter__
+[0;36m(APIServer pid=61568)[0;0m     return await anext(self.gen)
+[0;36m(APIServer pid=61568)[0;0m   File "/opt/conda/lib/python3.10/site-packages/vllm/entrypoints/openai/api_server.py", line 147, in build_async_engine_client
+[0;36m(APIServer pid=61568)[0;0m     async with build_async_engine_client_from_engine_args(
+[0;36m(APIServer pid=61568)[0;0m   File "/opt/conda/lib/python3.10/contextlib.py", line 199, in __aenter__
+[0;36m(APIServer pid=61568)[0;0m     return await anext(self.gen)
+[0;36m(APIServer pid=61568)[0;0m   File "/opt/conda/lib/python3.10/site-packages/vllm/entrypoints/openai/api_server.py", line 173, in build_async_engine_client_from_engine_args
+[0;36m(APIServer pid=61568)[0;0m     vllm_config = engine_args.create_engine_config(usage_context=usage_context)
+[0;36m(APIServer pid=61568)[0;0m   File "/opt/conda/lib/python3.10/site-packages/vllm/engine/arg_utils.py", line 1365, in create_engine_config
+[0;36m(APIServer pid=61568)[0;0m     maybe_override_with_speculators(
+[0;36m(APIServer pid=61568)[0;0m   File "/opt/conda/lib/python3.10/site-packages/vllm/transformers_utils/config.py", line 526, in maybe_override_with_speculators
+[0;36m(APIServer pid=61568)[0;0m     config_dict, _ = PretrainedConfig.get_config_dict(
+[0;36m(APIServer pid=61568)[0;0m   File "/opt/conda/lib/python3.10/site-packages/transformers/configuration_utils.py", line 662, in get_config_dict
+[0;36m(APIServer pid=61568)[0;0m     config_dict, kwargs = cls._get_config_dict(pretrained_model_name_or_path, **kwargs)
+[0;36m(APIServer pid=61568)[0;0m   File "/opt/conda/lib/python3.10/site-packages/transformers/configuration_utils.py", line 721, in _get_config_dict
+[0;36m(APIServer pid=61568)[0;0m     resolved_config_file = cached_file(
+[0;36m(APIServer pid=61568)[0;0m   File "/opt/conda/lib/python3.10/site-packages/transformers/utils/hub.py", line 322, in cached_file
+[0;36m(APIServer pid=61568)[0;0m     file = cached_files(path_or_repo_id=path_or_repo_id, filenames=[filename], **kwargs)
+[0;36m(APIServer pid=61568)[0;0m   File "/opt/conda/lib/python3.10/site-packages/transformers/utils/hub.py", line 543, in cached_files
+[0;36m(APIServer pid=61568)[0;0m     raise OSError(
+[0;36m(APIServer pid=61568)[0;0m OSError: You are trying to access a gated repo.
+[0;36m(APIServer pid=61568)[0;0m Make sure to have access to it at https://huggingface.co/meta-llama/Llama-2-7b-hf.
+[0;36m(APIServer pid=61568)[0;0m 401 Client Error. (Request ID: Root=1-698c5f8b-307819b04c04e9f71818b69e;025220ec-8617-4858-ace6-ae693a5fb8c2)
+[0;36m(APIServer pid=61568)[0;0m 
+[0;36m(APIServer pid=61568)[0;0m Cannot access gated repo for url https://huggingface.co/meta-llama/Llama-2-7b-hf/resolve/main/config.json.
+[0;36m(APIServer pid=61568)[0;0m Access to model meta-llama/Llama-2-7b-hf is restricted. You must have access to it and be authenticated to access it. Please log in.

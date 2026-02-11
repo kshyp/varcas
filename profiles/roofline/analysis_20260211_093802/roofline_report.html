@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Roofline Analysis Report</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background: #f5f6fa; }
+        .container { max-width: 1200px; margin: 0 auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
+        h2 { color: #34495e; margin-top: 30px; }
+        .info-box { background: #ecf0f1; padding: 15px; border-radius: 5px; margin: 20px 0; }
+        .metric-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .metric-card { background: #f8f9fa; padding: 15px; border-radius: 5px; border-left: 4px solid #3498db; }
+        .metric-value { font-size: 24px; font-weight: bold; color: #2c3e50; }
+        .metric-label { font-size: 12px; color: #7f8c8d; text-transform: uppercase; }
+        .plot-container { margin: 30px 0; text-align: center; }
+        .plot-container svg { max-width: 100%; height: auto; border: 1px solid #ddd; border-radius: 5px; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background: #3498db; color: white; }
+        tr:hover { background: #f5f5f5; }
+        .code { font-family: monospace; background: #f4f4f4; padding: 2px 5px; border-radius: 3px; }
+        .bound-compute { color: #e74c3c; font-weight: bold; }
+        .bound-memory { color: #3498db; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Roofline Analysis Report</h1>
+
+        <div class="info-box">
+            <h3>Configuration</h3>
+            <p><strong>GPU:</strong> Tesla T4 | 
+               <strong>Model:</strong> Llama-2-7B-AWQ | 
+               <strong>Parameters:</strong> 6.7B (4-bit)</p>
+        </div>
+        
+        <div class="metric-grid">
+            <div class="metric-card">
+                <div class="metric-value">65.0</div>
+                <div class="metric-label">Peak FP16 (TFLOPS)</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">320</div>
+                <div class="metric-label">Memory BW (GB/s)</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">203.1</div>
+                <div class="metric-label">Ridge Point</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">1.7B</div>
+                <div class="metric-label">Effective Params</div>
+            </div>
+        </div>
+
+        <h2>📊 Static Roofline Analysis</h2>
+        <p>Theoretical roofline based on model architecture and GPU specifications.</p>
+        <div class="plot-container">
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+<defs>
+    <style>
+        .title { font-family: Arial, sans-serif; font-size: 18px; font-weight: bold; }
+        .axis-label { font-family: Arial, sans-serif; font-size: 12px; }
+        .tick-label { font-family: Arial, sans-serif; font-size: 10px; }
+        .legend { font-family: Arial, sans-serif; font-size: 11px; }
+        .roofline { fill: none; stroke: #e74c3c; stroke-width: 3; }
+        .memory-slope { fill: none; stroke: #3498db; stroke-width: 2; stroke-dasharray: 5,5; }
+        .point-gemm { fill: #e74c3c; stroke: #c0392b; stroke-width: 1; }
+        .point-attention { fill: #9b59b6; stroke: #8e44ad; stroke-width: 1; }
+        .point-memory { fill: #3498db; stroke: #2980b9; stroke-width: 1; }
+        .point-workload { fill: #2ecc71; stroke: #27ae60; stroke-width: 2; }
+        .grid-line { stroke: #ecf0f1; stroke-width: 1; }
+        .axis-line { stroke: #2c3e50; stroke-width: 2; }
+    </style>
+</defs>
+
+<rect width="800" height="600" fill="#ffffff"/>
+<text x="400.0" y="40" text-anchor="middle" class="title">Static Roofline - Theoretical Bounds</text>
+<line x1="80.0" y1="60" x2="80.0" y2="520" class="grid-line"/>
+<line x1="250.0" y1="60" x2="250.0" y2="520" class="grid-line"/>
+<line x1="420.0" y1="60" x2="420.0" y2="520" class="grid-line"/>
+<line x1="590.0" y1="60" x2="590.0" y2="520" class="grid-line"/>
+<line x1="760.0" y1="60" x2="760.0" y2="520" class="grid-line"/>
+<line x1="80" y1="520.0" x2="760" y2="520.0" class="grid-line"/>
+<line x1="80" y1="360.94572854841346" x2="760" y2="360.94572854841346" class="grid-line"/>
+<line x1="80" y1="201.8914570968269" x2="760" y2="201.8914570968269" class="grid-line"/>
+<line x1="80" y1="60.0" x2="760" y2="60.0" class="grid-line"/>
+<line x1="80" y1="520" x2="760" y2="520" class="axis-line"/>
+<line x1="80" y1="60" x2="80" y2="520" class="axis-line"/>
+<text x="400.0" y="580" text-anchor="middle" class="axis-label">Arithmetic Intensity (FLOP/Byte)</text>
+<text x="20" y="300.0" text-anchor="middle" transform="rotate(-90, 20, 300.0)" class="axis-label">Performance (TFLOPS)</text>
+<text x="80.0" y="540" text-anchor="middle" class="tick-label">0.1</text>
+<text x="250.0" y="540" text-anchor="middle" class="tick-label">1</text>
+<text x="420.0" y="540" text-anchor="middle" class="tick-label">10</text>
+<text x="590.0" y="540" text-anchor="middle" class="tick-label">100</text>
+<text x="760.0" y="540" text-anchor="middle" class="tick-label">1000</text>
+<text x="70" y="524.0" text-anchor="end" class="tick-label">0.1</text>
+<text x="70" y="364.94572854841346" text-anchor="end" class="tick-label">1</text>
+<text x="70" y="205.8914570968269" text-anchor="end" class="tick-label">10</text>
+<path d="M 80.0 520.0 L 591.1446750520246 120.47422204814256 L 638.5327872140056 76.13727113408407 L 642.3197743149015 72.59411540273379 L 760.0 72.59411540273379" class="roofline"/>
+<circle cx="642.3197743149015" cy="72.59411540273379" r="5" fill="#e74c3c"/>
+<text x="652.3197743149015" y="62.59411540273379" class="legend">Ridge Point (203.1)</text>
+<text x="161.11061330234264" y="510.0" class="legend" fill="#3498db">Memory Bandwidth: 320.0 GB/s</text>
+<text x="750" y="62.59411540273379" text-anchor="end" class="legend" fill="#e74c3c">Peak: 65.0 TFLOPS</text>
+<circle cx="731.6747482956132" cy="72.59411540273379" r="4" class="point-workload"/>
+<circle cx="332.12256657535556" cy="362.8187676576156" r="4" class="point-workload"/>
+<circle cx="426.3986437902877" cy="274.61281014741246" r="4" class="point-workload"/>
+<rect x="600" y="65" width="140" height="80" fill="white" stroke="#bdc3c7"/>
+<text x="610" y="80" class="legend" font-weight="bold">Legend</text>
+<circle cx="615" cy="100" r="4" class="point-gemm"/>
+<text x="625" y="104" class="legend">GEMM kernels</text>
+<circle cx="615" cy="120" r="4" class="point-attention"/>
+<text x="625" y="124" class="legend">Attention</text>
+<circle cx="615" cy="140" r="4" class="point-workload"/>
+<text x="625" y="144" class="legend">Workloads</text>
+</svg></div>
+        <h2>🔍 Phase Analysis</h2>
+        <table>
+            <tr>
+                <th>Phase</th>
+                <th>Batch</th>
+                <th>Seq Len</th>
+                <th>Arithmetic Intensity</th>
+                <th>Attainable TFLOPS</th>
+                <th>Utilization</th>
+                <th>Bound</th>
+            </tr>
+
+            <tr>
+                <td class="code">Prefill</td>
+                <td>1</td>
+                <td>64</td>
+                <td>190.03</td>
+                <td>60.81</td>
+                <td>93.6%</td>
+                <td class="bound-compute">COMPUTE</td>
+            </tr>
+
+            <tr>
+                <td class="code">Prefill</td>
+                <td>1</td>
+                <td>128</td>
+                <td>366.55</td>
+                <td>65.00</td>
+                <td>100.0%</td>
+                <td class="bound-compute">COMPUTE</td>
+            </tr>
+
+            <tr>
+                <td class="code">Prefill</td>
+                <td>1</td>
+                <td>256</td>
+                <td>684.68</td>
+                <td>65.00</td>
+                <td>100.0%</td>
+                <td class="bound-compute">COMPUTE</td>
+            </tr>
+
+            <tr>
+                <td class="code">Prefill</td>
+                <td>1</td>
+                <td>512</td>
+                <td>1210.94</td>
+                <td>65.00</td>
+                <td>100.0%</td>
+                <td class="bound-compute">COMPUTE</td>
+            </tr>
+
+            <tr>
+                <td class="code">Decode</td>
+                <td>1</td>
+                <td>128</td>
+                <td>3.08</td>
+                <td>0.98</td>
+                <td>1.5%</td>
+                <td class="bound-memory">MEMORY</td>
+            </tr>
+
+            <tr>
+                <td class="code">Decode</td>
+                <td>1</td>
+                <td>512</td>
+                <td>3.06</td>
+                <td>0.98</td>
+                <td>1.5%</td>
+                <td class="bound-memory">MEMORY</td>
+            </tr>
+
+            <tr>
+                <td class="code">Decode</td>
+                <td>1</td>
+                <td>1024</td>
+                <td>3.04</td>
+                <td>0.97</td>
+                <td>1.5%</td>
+                <td class="bound-memory">MEMORY</td>
+            </tr>
+
+            <tr>
+                <td class="code">Decode</td>
+                <td>1</td>
+                <td>2048</td>
+                <td>3.00</td>
+                <td>0.96</td>
+                <td>1.5%</td>
+                <td class="bound-memory">MEMORY</td>
+            </tr>
+</table>
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #ddd; color: #7f8c8d; font-size: 12px;">
+            Generated by Roofline Analysis Tool
+        </div>
+    </div>
+</body>
+</html>

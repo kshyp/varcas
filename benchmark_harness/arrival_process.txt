@@ -1,0 +1,28 @@
+1. Arrival Process (Temporal Dynamics)
+Controls when requests are sent:
+
+| Process          | Use Case                     | Parameters                         |
+| ---------------- | ---------------------------- | ---------------------------------- |
+| **Poisson**      | Baseline, steady load        | `target_rps`                       |
+| **Hawkes**       | Bursty traffic, viral spikes | `base_rate`, `excitation`, `decay` |
+| **Trace Replay** | Customer-specific patterns   | `trace_timestamps`                 |
+| **Cyclical**     | Business hours patterns      | `base`, `amplitude`, `period`      |
+
+2. Request Builder (Content Generation)
+Controls what is sent:
+Token-targeted generation: Builds text to hit specific token counts
+Workload types: Chat, RAG (long context), Code (structured), Batch
+Templates: Domain-appropriate prompts (context+question, chat history, etc.)
+
+3. Execution Modes
+| Mode            | Behavior                                     | Best For                                 |
+| --------------- | -------------------------------------------- | ---------------------------------------- |
+| **Open Loop**   | Fixed schedule, send regardless of response  | Finding saturation point, throughput max |
+| **Closed Loop** | Fixed concurrent requests, wait for response | Latency curves, stability testing        |
+
+4. Metrics Capture
+Every request records:
+TTFT (Time To First Token): Scheduling + prefill latency
+TPOT (Time Per Output Token): Decoding throughput
+Total Latency: End-to-end response time
+Token counts: Input/output for throughput calculation

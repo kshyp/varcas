@@ -1,0 +1,24 @@
+{
+  "results": [
+    {
+      "batch_size": 1,
+      "requests": 1654,
+      "success_rate": 100.0,
+      "throughput_rps": 47.333195169161016,
+      "throughput_tok_s": 36.744753686337816,
+      "ttft_p50_ms": 12083.263874053955,
+      "tpot_p50_ms": 26.52262720160948,
+      "latency_p50_ms": 13696.576118469238
+    },
+    {
+      "batch_size": 8,
+      "requests": 1695,
+      "success_rate": 100.0,
+      "throughput_rps": 48.49335470038626,
+      "throughput_tok_s": 179.21084002549827,
+      "ttft_p50_ms": 14388.156771659851,
+      "tpot_p50_ms": 38.38931675512094,
+      "latency_p50_ms": 17958.330750465393
+    }
+  ]
+}

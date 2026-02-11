@@ -1,0 +1,15 @@
+| Metric                    | Purpose                              |
+| ------------------------- | ------------------------------------ |
+| `relative_change_percent` | Primary metric (-1.20% = 1.2% worse) |
+| `absolute_degradation`    | Raw difference (-0.0111)             |
+| `accuracy_preserved`      | Boolean decision (True/False)        |
+| `degradation_status`      | Human-readable classification        |
+
+
+| Status              | Criteria                       | Customer Meaning                             |
+| ------------------- | ------------------------------ | -------------------------------------------- |
+| **NO\_DEGRADATION** | Candidate ≥ Baseline           | Optimization maintained or improved accuracy |
+| **ACCEPTABLE**      | Absolute < 2% OR Relative < 5% | Within tolerance, safe to deploy             |
+| **WARNING**         | Relative 5-10%                 | Moderate degradation, review recommended     |
+| **CRITICAL**        | Relative > 10%                 | Significant degradation, reject optimization |
+

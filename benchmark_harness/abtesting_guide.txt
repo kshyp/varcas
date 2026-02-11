@@ -1,0 +1,83 @@
+  New Features for A/B Testing
+
+  1. Save Prompts to Trace File (--save-trace)
+
+  # Run baseline test and save prompts
+  python varcas_load_harness.py \
+      --profile chat_medium \
+      --save-trace ab_test_trace.json \
+      --output baseline_result.json
+
+  This creates ab_test_trace.json with the exact prompts used:
+
+  {
+    "metadata": {
+      "source": "varcas_load_harness",
+      "total_requests": 600,
+      "profile": "chat_medium",
+      "exported_at": "2026-02-09T03:30:00"
+    },
+    "prompts": [
+      {
+        "timestamp": 0,
+        "prompt": "User: Machine learning is a subset of artificial intelligence...",
+        "max_tokens": 150,
+        "workload_type": "chat",
+        "input_tokens": 50,
+        "output_tokens": 150
+      },
+      ...
+    ]
+  }
+
+  2. Replay from Trace or Previous Results (--trace)
+
+  # Option A: Replay from saved trace
+  python varcas_load_harness.py \
+      --trace ab_test_trace.json \
+      --output optimized_result.json
+
+  # Option B: Replay directly from previous results.json
+  python varcas_load_harness.py \
+      --trace baseline_result.json \
+      --output optimized_result.json
+
+  3. Why This Matters for A/B Testing
+
+   Problem                                            Solution
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   Synthetic prompts vary between runs                Trace file stores exact prompts
+   Context window changes after optimization          Trace preserves original token counts
+   Random seed affects prompt generation              No regeneration, exact replay
+   Want to test same workload on different hardware   Trace is portable
+
+  4. Complete A/B Testing Workflow
+
+  # 1. Baseline run (generates prompts)
+  python varcas_load_harness.py \
+      --profile chat_medium \
+      --save-trace prompts.json \
+      --output baseline.json
+
+  # 2. Apply your optimization...
+
+  # 3. Optimized run (exact same prompts)
+  python varcas_load_harness.py \
+      --trace prompts.json \
+      --output optimized.json
+
+  # 4. Compare
+  python3 -c "
+  import json
+  b = json.load(open('baseline.json'))['metrics']
+  o = json.load(open('optimized.json'))['metrics']
+  print(f'Speedup: {o[\"throughput_rps\"]/b[\"throughput_rps\"]:.2f}x')
+  "
+
+  5. Additional Use Cases
+
+  • Regression testing: Save "golden" prompt sets and replay on new builds
+  • Parameter sweeps: Same prompts, different batch sizes
+  • Multi-node testing: Same workload distributed across nodes
+  • Reproducible benchmarks: Share trace files for peer review
+

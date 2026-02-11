@@ -1,0 +1,13 @@
+{
+  "timestamp": "2026-02-11T09:38:16.619575",
+  "output_dir": "varcas/profiles/roofline/analysis_20260211_093816",
+  "phases": {
+    "static": {
+      "file": "varcas/profiles/roofline/analysis_20260211_093816/static_analysis.json"
+    },
+    "dynamic": {
+      "file": "varcas/profiles/roofline/analysis_20260211_093816/dynamic_analysis.json"
+    }
+  },
+  "report": "varcas/profiles/roofline/analysis_20260211_093816/roofline_report.html"
+}

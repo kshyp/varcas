@@ -1,0 +1,13 @@
+{
+  "timestamp": "2026-02-11T09:38:02.674418",
+  "output_dir": "varcas/profiles/roofline/analysis_20260211_093802",
+  "phases": {
+    "static": {
+      "file": "varcas/profiles/roofline/analysis_20260211_093802/static_analysis.json"
+    },
+    "dynamic": {
+      "skipped": "vLLM not running"
+    }
+  },
+  "report": "varcas/profiles/roofline/analysis_20260211_093802/roofline_report.html"
+}

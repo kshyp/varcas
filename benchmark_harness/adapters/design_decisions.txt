@@ -1,0 +1,7 @@
+| Format             | Adapter Approach          | Preserved From Original                          | Harness Adds                              |
+| ------------------ | ------------------------- | ------------------------------------------------ | ----------------------------------------- |
+| **MLPerf**         | Scenario-based conversion | Dataset content, length distributions            | Arrival process per scenario spec         |
+| **vLLM Benchmark** | Replication               | ShareGPT or synthetic data, Poisson arrival      | Structured output, metric standardization |
+| **ShareGPT**       | Direct conversion         | Real conversation patterns, length distributions | Statistical sampling for scale            |
+| **Azure Traces**   | Timestamp replay          | Exact temporal patterns, production burstiness   | Synthetic content matching token counts   |
+

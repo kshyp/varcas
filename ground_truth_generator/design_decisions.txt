@@ -1,0 +1,7 @@
+| Aspect                          | Decision                              | Rationale                                                              |
+| ------------------------------- | ------------------------------------- | ---------------------------------------------------------------------- |
+| **Ground truth source**         | External API (Kimi/GPT-4/Claude)      | Higher quality than local small model, practical for 100-1000 examples |
+| **One-time generation**         | Generate once, validate multiple runs | Cost efficiency, consistency                                           |
+| **Deterministic**               | temperature=0                         | Same prompt → same reference                                           |
+| **Extract from harness output** | Use actual prompts from load test     | Ground truth matches real test distribution                            |
+

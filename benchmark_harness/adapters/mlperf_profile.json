@@ -1,0 +1,42 @@
+{
+  "name": "mlperf_server",
+  "arrival_process": "poisson",
+  "target_rps": 20.0,
+  "concurrency": 10,
+  "duration_seconds": 300,
+  "hawkes_base_rate": 5.0,
+  "hawkes_excitation": 0.5,
+  "hawkes_decay": 1.0,
+  "cyclical_base": 5.0,
+  "cyclical_amplitude": 10.0,
+  "cyclical_period": 3600,
+  "trace_timestamps": null,
+  "workloads": [
+    {
+      "name": "mlperf_server",
+      "workload_type": "chat",
+      "input_dist": {
+        "mean": 5.7,
+        "std": 1.25,
+        "min": 3,
+        "max": 8,
+        "distribution": "lognormal"
+      },
+      "output_dist": {
+        "mean": 36.0,
+        "std": 5.75,
+        "min": 19,
+        "max": 42,
+        "distribution": "lognormal"
+      },
+      "weight": 1.0,
+      "system_prompt": "",
+      "context_template": "{context}\n\nQuestion: {question}",
+      "question_template": "Explain the following in detail:"
+    }
+  ],
+  "seed": 42,
+  "open_loop": true,
+  "model_max_context": 8192,
+  "context_margin": 50
+}

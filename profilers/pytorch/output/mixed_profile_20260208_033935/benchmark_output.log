@@ -1,0 +1,15 @@
+Auto-detected model max context: 1024 tokens
+Starting load test: mixed
+Model max context: 1024 tokens (margin: 50)
+Duration: 120s
+Mode: Open loop
+Target: http://localhost:8000
+
+Completed: 2894 requests
+Success rate: 100.0%
+Throughput: 24.12 req/s, 1548.5 tok/s
+TTFT: p50=14050.1ms, p99=34832.1ms
+TPOT: p50=59.01ms, p99=106.37ms
+Latency: p50=18854.7ms, p99=41923.2ms
+
+Results saved to result.json

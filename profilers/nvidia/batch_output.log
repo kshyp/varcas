@@ -1,0 +1,15 @@
+Auto-detected model max context: 1024 tokens
+Starting load test: chat_medium
+Model max context: 1024 tokens (margin: 50)
+Duration: 30s
+Mode: Open loop
+Target: http://localhost:8000
+
+Completed: 562 requests
+Success rate: 100.0%
+Throughput: 18.78 req/s, 1958.6 tok/s
+TTFT: p50=59.3ms, p99=100.0ms
+TPOT: p50=16.21ms, p99=26.56ms
+Latency: p50=1549.1ms, p99=6300.0ms
+
+Results saved to /home/sujatha/varcas/profilers/nvidia/result_batch_20260209_032800.json

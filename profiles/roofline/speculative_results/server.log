@@ -1,0 +1,46 @@
+[0;36m(APIServer pid=60581)[0;0m INFO 02-11 10:46:14 [utils.py:325] 
+[0;36m(APIServer pid=60581)[0;0m INFO 02-11 10:46:14 [utils.py:325]        █     █     █▄   ▄█
+[0;36m(APIServer pid=60581)[0;0m INFO 02-11 10:46:14 [utils.py:325]  ▄▄ ▄█ █     █     █ ▀▄▀ █  version 0.15.1
+[0;36m(APIServer pid=60581)[0;0m INFO 02-11 10:46:14 [utils.py:325]   █▄█▀ █     █     █     █  model   TheBloke/Llama-2-7B-AWQ
+[0;36m(APIServer pid=60581)[0;0m INFO 02-11 10:46:14 [utils.py:325]    ▀▀  ▀▀▀▀▀ ▀▀▀▀▀ ▀     ▀
+[0;36m(APIServer pid=60581)[0;0m INFO 02-11 10:46:14 [utils.py:325] 
+[0;36m(APIServer pid=60581)[0;0m INFO 02-11 10:46:14 [utils.py:261] non-default args: {'model': 'TheBloke/Llama-2-7B-AWQ', 'dtype': 'half', 'max_model_len': 2048, 'quantization': 'awq', 'enforce_eager': True, 'max_num_seqs': 8, 'speculative_config': {'model': 'JackFram/llama-160m', 'num_speculative_tokens': 5}}
+[0;36m(APIServer pid=60581)[0;0m INFO 02-11 10:46:14 [model.py:541] Resolved architecture: LlamaForCausalLM
+[0;36m(APIServer pid=60581)[0;0m INFO 02-11 10:46:14 [model.py:1561] Using max model len 2048
+[0;36m(APIServer pid=60581)[0;0m INFO 02-11 10:46:16 [awq_marlin.py:166] Detected that the model can run with awq_marlin, however you specified quantization=awq explicitly, so forcing awq. Use quantization=awq_marlin for faster inference
+[0;36m(APIServer pid=60581)[0;0m INFO 02-11 10:46:17 [model.py:541] Resolved architecture: LlamaForCausalLM
+[0;36m(APIServer pid=60581)[0;0m INFO 02-11 10:46:17 [model.py:1882] Downcasting torch.float32 to torch.float16.
+[0;36m(APIServer pid=60581)[0;0m INFO 02-11 10:46:17 [model.py:1561] Using max model len 2048
+[0;36m(APIServer pid=60581)[0;0m Traceback (most recent call last):
+[0;36m(APIServer pid=60581)[0;0m   File "/opt/conda/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+[0;36m(APIServer pid=60581)[0;0m     return _run_code(code, main_globals, None,
+[0;36m(APIServer pid=60581)[0;0m   File "/opt/conda/lib/python3.10/runpy.py", line 86, in _run_code
+[0;36m(APIServer pid=60581)[0;0m     exec(code, run_globals)
+[0;36m(APIServer pid=60581)[0;0m   File "/opt/conda/lib/python3.10/site-packages/vllm/entrypoints/openai/api_server.py", line 991, in <module>
+[0;36m(APIServer pid=60581)[0;0m     uvloop.run(run_server(args))
+[0;36m(APIServer pid=60581)[0;0m   File "/opt/conda/lib/python3.10/site-packages/uvloop/__init__.py", line 82, in run
+[0;36m(APIServer pid=60581)[0;0m     return loop.run_until_complete(wrapper())
+[0;36m(APIServer pid=60581)[0;0m   File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+[0;36m(APIServer pid=60581)[0;0m   File "/opt/conda/lib/python3.10/site-packages/uvloop/__init__.py", line 61, in wrapper
+[0;36m(APIServer pid=60581)[0;0m     return await main
+[0;36m(APIServer pid=60581)[0;0m   File "/opt/conda/lib/python3.10/site-packages/vllm/entrypoints/openai/api_server.py", line 919, in run_server
+[0;36m(APIServer pid=60581)[0;0m     await run_server_worker(listen_address, sock, args, **uvicorn_kwargs)
+[0;36m(APIServer pid=60581)[0;0m   File "/opt/conda/lib/python3.10/site-packages/vllm/entrypoints/openai/api_server.py", line 938, in run_server_worker
+[0;36m(APIServer pid=60581)[0;0m     async with build_async_engine_client(
+[0;36m(APIServer pid=60581)[0;0m   File "/opt/conda/lib/python3.10/contextlib.py", line 199, in __aenter__
+[0;36m(APIServer pid=60581)[0;0m     return await anext(self.gen)
+[0;36m(APIServer pid=60581)[0;0m   File "/opt/conda/lib/python3.10/site-packages/vllm/entrypoints/openai/api_server.py", line 147, in build_async_engine_client
+[0;36m(APIServer pid=60581)[0;0m     async with build_async_engine_client_from_engine_args(
+[0;36m(APIServer pid=60581)[0;0m   File "/opt/conda/lib/python3.10/contextlib.py", line 199, in __aenter__
+[0;36m(APIServer pid=60581)[0;0m     return await anext(self.gen)
+[0;36m(APIServer pid=60581)[0;0m   File "/opt/conda/lib/python3.10/site-packages/vllm/entrypoints/openai/api_server.py", line 173, in build_async_engine_client_from_engine_args
+[0;36m(APIServer pid=60581)[0;0m     vllm_config = engine_args.create_engine_config(usage_context=usage_context)
+[0;36m(APIServer pid=60581)[0;0m   File "/opt/conda/lib/python3.10/site-packages/vllm/engine/arg_utils.py", line 1632, in create_engine_config
+[0;36m(APIServer pid=60581)[0;0m     speculative_config = self.create_speculative_config(
+[0;36m(APIServer pid=60581)[0;0m   File "/opt/conda/lib/python3.10/site-packages/vllm/engine/arg_utils.py", line 1342, in create_speculative_config
+[0;36m(APIServer pid=60581)[0;0m     return SpeculativeConfig(**self.speculative_config)
+[0;36m(APIServer pid=60581)[0;0m   File "/opt/conda/lib/python3.10/site-packages/pydantic/_internal/_dataclasses.py", line 121, in __init__
+[0;36m(APIServer pid=60581)[0;0m     s.__pydantic_validator__.validate_python(ArgsKwargs(args, kwargs), self_instance=s)
+[0;36m(APIServer pid=60581)[0;0m   File "/opt/conda/lib/python3.10/site-packages/vllm/config/speculative.py", line 412, in __post_init__
+[0;36m(APIServer pid=60581)[0;0m     raise NotImplementedError(
+[0;36m(APIServer pid=60581)[0;0m NotImplementedError: Unsupported speculative method: 'None'

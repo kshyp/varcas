@@ -1,0 +1,10 @@
+# Core dependencies
+# No external dependencies required for basic functionality
+
+# Optional: For HuggingFace integration
+# transformers>=4.30.0
+# torch>=2.0.0
+
+# Optional: For web UI (future)
+# streamlit>=1.25.0
+# plotly>=5.15.0

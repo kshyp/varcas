@@ -746,7 +746,7 @@ class LoadHarness:
         else:
             prompt = self.content_gen.build_chat_prompt(0, input_tokens, rng, use_meaningful=self.use_meaningful)
         
-            return {
+        return {
             "prompt": prompt,
             "max_tokens": output_tokens,
             "temperature": self.temperature,
@@ -1058,19 +1058,25 @@ def get_burst_profile() -> LoadProfile:
     )
 
 
-def get_closed_loop_profile(concurrency: int = 10) -> LoadProfile:
+def get_closed_loop_profile(concurrency: int = 10, duration: int = 120) -> LoadProfile:
+    """Closed-loop profile matching config_iq chat workload.
+    
+    Uses token distributions from config_iq/data/workload_defaults.json
+    - input_tokens: mean=50, std=30, min=10, max=500
+    - output_tokens: mean=150, std=80, min=20, max=1000
+    """
     return LoadProfile(
-        name=f"closed_loop_c{concurrency}",
+        name=f"closed_loop_chat_c{concurrency}",
         arrival_process=ArrivalProcess.POISSON,
         concurrency=concurrency,
-        duration_seconds=60,
+        duration_seconds=duration,
         open_loop=False,
         workloads=[
             WorkloadProfile(
                 name="chat",
                 workload_type=WorkloadType.CHAT,
-                input_dist=TokenDistribution(mean=50, std=30, min=10, max=300),
-                output_dist=TokenDistribution(mean=150, std=80, min=20, max=800)
+                input_dist=TokenDistribution(mean=50, std=30, min=10, max=500),
+                output_dist=TokenDistribution(mean=150, std=80, min=20, max=1000)
             )
         ]
     )
@@ -1310,6 +1316,8 @@ async def main():
                        help='Model maximum context length (input + output tokens)')
     parser.add_argument('--context-margin', type=int, default=None,
                        help='Safety margin to reserve for special tokens (default: 50)')
+    parser.add_argument('--concurrent-users', type=int, default=None,
+                       help='Number of concurrent users for closed-loop testing (matches config_iq parameter)')
     
     # A/B Testing: Save prompts for replay
     parser.add_argument('--save-trace', default=None, 
@@ -1357,7 +1365,9 @@ async def main():
     elif args.profile == 'burst':
         profile = get_burst_profile()
     elif args.profile == 'closed_loop':
-        profile = get_closed_loop_profile(concurrency=10)
+        # Use --concurrent-users if specified, otherwise default to 10
+        concurrency = args.concurrent_users if args.concurrent_users else 10
+        profile = get_closed_loop_profile(concurrency=concurrency)
     else:
         profile = get_chat_profile('medium')
     
@@ -1382,7 +1392,11 @@ async def main():
     print(f"Starting load test: {profile.name}")
     print(f"Model max context: {profile.model_max_context} tokens (margin: {profile.context_margin})")
     print(f"Duration: {profile.duration_seconds}s")
-    print(f"Mode: {'Open loop' if profile.open_loop else 'Closed loop'}")
+    print(f"Mode: {'Open loop' if profile.open_loop else 'Closed loop'}", end="")
+    if not profile.open_loop:
+        print(f" (concurrency: {profile.concurrency})")
+    else:
+        print()
     print(f"Temperature: {args.temperature} ({'deterministic' if args.temperature == 0 else 'stochastic'})")
     print(f"Target: {args.url}")
     

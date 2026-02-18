@@ -1,0 +1,197 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "description": "Default workload patterns and SLA targets for LLM inference"
+  },
+  "workloads": {
+    "chat": {
+      "description": "Interactive chat/conversational AI",
+      "traffic_pattern": {
+        "arrival_process": "poisson",
+        "peak_factor": 3.0,
+        "burstiness": 1.5
+      },
+      "token_distribution": {
+        "input_tokens": {
+          "mean": 50,
+          "std": 30,
+          "min": 10,
+          "max": 500,
+          "distribution": "lognormal"
+        },
+        "output_tokens": {
+          "mean": 150,
+          "std": 80,
+          "min": 20,
+          "max": 1000,
+          "distribution": "lognormal"
+        },
+        "context_tokens": {
+          "mean": 200,
+          "std": 150,
+          "min": 0,
+          "max": 4000
+        }
+      },
+      "sla_targets": {
+        "ttft_p50_ms": 200,
+        "ttft_p95_ms": 500,
+        "ttft_p99_ms": 1000,
+        "tpot_p50_ms": 50,
+        "tpot_p95_ms": 80,
+        "tpot_p99_ms": 120,
+        "e2e_latency_per_512_tokens_ms": 2000,
+        "concurrent_users_per_1k_tok_s": 10
+      }
+    },
+    "rag": {
+      "description": "Retrieval-Augmented Generation with long context",
+      "traffic_pattern": {
+        "arrival_process": "poisson",
+        "peak_factor": 2.0,
+        "burstiness": 2.0
+      },
+      "token_distribution": {
+        "input_tokens": {
+          "mean": 2000,
+          "std": 800,
+          "min": 500,
+          "max": 8000,
+          "distribution": "lognormal"
+        },
+        "output_tokens": {
+          "mean": 300,
+          "std": 150,
+          "min": 50,
+          "max": 1500,
+          "distribution": "lognormal"
+        },
+        "context_tokens": {
+          "mean": 4000,
+          "std": 2000,
+          "min": 1000,
+          "max": 32000
+        }
+      },
+      "sla_targets": {
+        "ttft_p50_ms": 800,
+        "ttft_p95_ms": 2000,
+        "ttft_p99_ms": 4000,
+        "tpot_p50_ms": 40,
+        "tpot_p95_ms": 60,
+        "tpot_p99_ms": 90,
+        "e2e_latency_per_512_tokens_ms": 1500,
+        "concurrent_users_per_1k_tok_s": 5
+      },
+      "prefix_cache": {
+        "enabled": true,
+        "cacheable_token_ratio": 0.75,
+        "cache_hit_rate": 0.70,
+        "avg_prefix_length": 3500
+      }
+    },
+    "code": {
+      "description": "Code generation and completion",
+      "traffic_pattern": {
+        "arrival_process": "hawkes",
+        "hawkes_base_rate": 5.0,
+        "hawkes_excitation": 0.8,
+        "hawkes_decay": 2.0,
+        "peak_factor": 4.0,
+        "burstiness": 3.0
+      },
+      "token_distribution": {
+        "input_tokens": {
+          "mean": 1500,
+          "std": 800,
+          "min": 200,
+          "max": 8000,
+          "distribution": "lognormal"
+        },
+        "output_tokens": {
+          "mean": 400,
+          "std": 300,
+          "min": 50,
+          "max": 2000,
+          "distribution": "lognormal"
+        },
+        "context_tokens": {
+          "mean": 3000,
+          "std": 1500,
+          "min": 500,
+          "max": 16000
+        }
+      },
+      "sla_targets": {
+        "ttft_p50_ms": 500,
+        "ttft_p95_ms": 1200,
+        "ttft_p99_ms": 2500,
+        "tpot_p50_ms": 35,
+        "tpot_p95_ms": 55,
+        "tpot_p99_ms": 80,
+        "e2e_latency_per_512_tokens_ms": 1200,
+        "concurrent_users_per_1k_tok_s": 6
+      }
+    }
+  },
+  "headroom_factors": {
+    "0": {
+      "description": "No headroom - maximum utilization",
+      "utilization_target": 0.95,
+      "burst_multiplier": 1.0
+    },
+    "25": {
+      "description": "25% headroom for growth",
+      "utilization_target": 0.75,
+      "burst_multiplier": 1.33
+    },
+    "50": {
+      "description": "50% headroom for growth and spikes",
+      "utilization_target": 0.50,
+      "burst_multiplier": 2.0
+    },
+    "100": {
+      "description": "100% headroom - 2x capacity",
+      "utilization_target": 0.50,
+      "burst_multiplier": 2.0
+    }
+  },
+  "interconnect": {
+    "nvidia-a100-40gb": {
+      "nvlink_bw_gbps": 600,
+      "nvlink_topology": "fully_connected",
+      "tensor_parallel_overhead": 0.05
+    },
+    "nvidia-a100-80gb": {
+      "nvlink_bw_gbps": 600,
+      "nvlink_topology": "fully_connected",
+      "tensor_parallel_overhead": 0.05
+    },
+    "nvidia-h100-80gb": {
+      "nvlink_bw_gbps": 900,
+      "nvlink_topology": "fully_connected",
+      "tensor_parallel_overhead": 0.03
+    },
+    "nvidia-l4": {
+      "pcie_bw_gbps": 64,
+      "topology": "pcie_switch",
+      "tensor_parallel_overhead": 0.15
+    },
+    "nvidia-t4": {
+      "pcie_bw_gbps": 32,
+      "topology": "pcie_root",
+      "tensor_parallel_overhead": 0.20
+    }
+  },
+  "vllm_overhead_factors": {
+    "kv_cache_memory_fraction": 0.85,
+    "attention_overhead": 1.15,
+    "scheduling_overhead_ms": 5,
+    "batching_efficiency": 0.90,
+    "tensor_parallel_efficiency": {
+      "2": 0.95,
+      "4": 0.90,
+      "8": 0.85
+    }
+  }
+}

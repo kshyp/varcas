@@ -1,0 +1,407 @@
+{
+  "metadata": {
+    "provider": "GCP",
+    "last_updated": "2025-02-01",
+    "pricing_unit": "USD/hour",
+    "zones": {
+      "us-central1": ["us-central1-a", "us-central1-b", "us-central1-c", "us-central1-f"],
+      "us-east1": ["us-east1-b", "us-east1-c", "us-east1-d"],
+      "us-west1": ["us-west1-a", "us-west1-b", "us-west1-c"],
+      "europe-west1": ["europe-west1-b", "europe-west1-c", "europe-west1-d"],
+      "asia-east1": ["asia-east1-a", "asia-east1-b", "asia-east1-c"]
+    },
+    "zone_instance_availability": {
+      "g2-standard": ["us-central1", "us-east1", "us-west1", "europe-west1", "asia-east1"],
+      "a2-highgpu": ["us-central1", "us-west1", "europe-west4"],
+      "a2-ultragpu": ["us-central1", "us-west1", "europe-west4"],
+      "a3-highgpu": ["us-central1", "us-west1"],
+      "n1-nvidia-t4": ["us-central1", "us-east1", "us-west1", "europe-west1", "asia-east1"]
+    }
+  },
+  "vm_instances": [
+    {
+      "name": "g2-standard-4",
+      "family": "g2",
+      "vcpus": 4,
+      "memory_gb": 16,
+      "gpus": [
+        {
+          "type": "nvidia-l4",
+          "count": 1,
+          "vram_gb": 24,
+          "compute_capability": "8.9",
+          "tensor_cores": true,
+          "fp16_tflops": 242,
+          "bf16_tflops": 242,
+          "fp8_tflops": 485,
+          "int8_tflops": 485,
+          "memory_bw_gbps": 300
+        }
+      ],
+      "ondemand_price_usd": 1.05,
+      "spot_price_usd": 0.32,
+      "network_bw_gbps": 10,
+      "available_zones": ["us-central1-a", "us-central1-b", "us-central1-c", "us-east1-b", "us-east1-c", "us-east1-d", "us-west1-a", "us-west1-b", "us-west1-c", "europe-west1-b", "europe-west1-c", "europe-west1-d", "asia-east1-a", "asia-east1-b", "asia-east1-c"]
+    },
+    {
+      "name": "g2-standard-8",
+      "family": "g2",
+      "vcpus": 8,
+      "memory_gb": 32,
+      "gpus": [
+        {
+          "type": "nvidia-l4",
+          "count": 1,
+          "vram_gb": 24,
+          "compute_capability": "8.9",
+          "tensor_cores": true,
+          "fp16_tflops": 242,
+          "bf16_tflops": 242,
+          "fp8_tflops": 485,
+          "int8_tflops": 485,
+          "memory_bw_gbps": 300
+        }
+      ],
+      "ondemand_price_usd": 1.35,
+      "spot_price_usd": 0.41,
+      "network_bw_gbps": 16,
+      "available_zones": ["us-central1-a", "us-central1-b", "us-central1-c", "us-east1-b", "us-east1-c", "us-east1-d", "us-west1-a", "us-west1-b", "us-west1-c", "europe-west1-b", "europe-west1-c", "europe-west1-d", "asia-east1-a", "asia-east1-b", "asia-east1-c"]
+    },
+    {
+      "name": "g2-standard-16",
+      "family": "g2",
+      "vcpus": 16,
+      "memory_gb": 64,
+      "gpus": [
+        {
+          "type": "nvidia-l4",
+          "count": 1,
+          "vram_gb": 24,
+          "compute_capability": "8.9",
+          "tensor_cores": true,
+          "fp16_tflops": 242,
+          "bf16_tflops": 242,
+          "fp8_tflops": 485,
+          "int8_tflops": 485,
+          "memory_bw_gbps": 300
+        }
+      ],
+      "ondemand_price_usd": 1.95,
+      "spot_price_usd": 0.59,
+      "network_bw_gbps": 32,
+      "available_zones": ["us-central1-a", "us-central1-b", "us-central1-c", "us-east1-b", "us-east1-c", "us-east1-d", "us-west1-a", "us-west1-b", "us-west1-c", "europe-west1-b", "europe-west1-c", "europe-west1-d", "asia-east1-a", "asia-east1-b", "asia-east1-c"]
+    },
+    {
+      "name": "a2-highgpu-1g",
+      "family": "a2",
+      "vcpus": 12,
+      "memory_gb": 85,
+      "gpus": [
+        {
+          "type": "nvidia-a100-40gb",
+          "count": 1,
+          "vram_gb": 40,
+          "compute_capability": "8.0",
+          "tensor_cores": true,
+          "fp16_tflops": 624,
+          "bf16_tflops": 624,
+          "fp8_tflops": 1248,
+          "int8_tflops": 1248,
+          "memory_bw_gbps": 1555
+        }
+      ],
+      "ondemand_price_usd": 3.67,
+      "spot_price_usd": 1.10,
+      "network_bw_gbps": 32,
+      "available_zones": ["us-central1-a", "us-central1-c", "us-west1-a", "us-west1-b"]
+    },
+    {
+      "name": "a2-highgpu-2g",
+      "family": "a2",
+      "vcpus": 24,
+      "memory_gb": 170,
+      "gpus": [
+        {
+          "type": "nvidia-a100-40gb",
+          "count": 2,
+          "vram_gb": 40,
+          "compute_capability": "8.0",
+          "tensor_cores": true,
+          "fp16_tflops": 624,
+          "bf16_tflops": 624,
+          "fp8_tflops": 1248,
+          "int8_tflops": 1248,
+          "memory_bw_gbps": 1555
+        }
+      ],
+      "ondemand_price_usd": 7.34,
+      "spot_price_usd": 2.20,
+      "network_bw_gbps": 32,
+      "available_zones": ["us-central1-a", "us-central1-c", "us-west1-a", "us-west1-b"]
+    },
+    {
+      "name": "a2-highgpu-4g",
+      "family": "a2",
+      "vcpus": 48,
+      "memory_gb": 340,
+      "gpus": [
+        {
+          "type": "nvidia-a100-40gb",
+          "count": 4,
+          "vram_gb": 40,
+          "compute_capability": "8.0",
+          "tensor_cores": true,
+          "fp16_tflops": 624,
+          "bf16_tflops": 624,
+          "fp8_tflops": 1248,
+          "int8_tflops": 1248,
+          "memory_bw_gbps": 1555
+        }
+      ],
+      "ondemand_price_usd": 14.68,
+      "spot_price_usd": 4.40,
+      "network_bw_gbps": 32,
+      "available_zones": ["us-central1-a", "us-central1-c", "us-west1-a", "us-west1-b"]
+    },
+    {
+      "name": "a2-highgpu-8g",
+      "family": "a2",
+      "vcpus": 96,
+      "memory_gb": 680,
+      "gpus": [
+        {
+          "type": "nvidia-a100-40gb",
+          "count": 8,
+          "vram_gb": 40,
+          "compute_capability": "8.0",
+          "tensor_cores": true,
+          "fp16_tflops": 624,
+          "bf16_tflops": 624,
+          "fp8_tflops": 1248,
+          "int8_tflops": 1248,
+          "memory_bw_gbps": 1555
+        }
+      ],
+      "ondemand_price_usd": 29.36,
+      "spot_price_usd": 8.80,
+      "network_bw_gbps": 32,
+      "available_zones": ["us-central1-a", "us-central1-c", "us-west1-a", "us-west1-b"]
+    },
+    {
+      "name": "a2-ultragpu-1g",
+      "family": "a2",
+      "vcpus": 12,
+      "memory_gb": 170,
+      "gpus": [
+        {
+          "type": "nvidia-a100-80gb",
+          "count": 1,
+          "vram_gb": 80,
+          "compute_capability": "8.0",
+          "tensor_cores": true,
+          "fp16_tflops": 624,
+          "bf16_tflops": 624,
+          "fp8_tflops": 1248,
+          "int8_tflops": 1248,
+          "memory_bw_gbps": 2039
+        }
+      ],
+      "ondemand_price_usd": 5.03,
+      "spot_price_usd": 1.51,
+      "network_bw_gbps": 32,
+      "available_zones": ["us-central1-a", "us-central1-c", "us-west1-a", "us-west1-b"]
+    },
+    {
+      "name": "a2-ultragpu-2g",
+      "family": "a2",
+      "vcpus": 24,
+      "memory_gb": 340,
+      "gpus": [
+        {
+          "type": "nvidia-a100-80gb",
+          "count": 2,
+          "vram_gb": 80,
+          "compute_capability": "8.0",
+          "tensor_cores": true,
+          "fp16_tflops": 624,
+          "bf16_tflops": 624,
+          "fp8_tflops": 1248,
+          "int8_tflops": 1248,
+          "memory_bw_gbps": 2039
+        }
+      ],
+      "ondemand_price_usd": 10.06,
+      "spot_price_usd": 3.02,
+      "network_bw_gbps": 32,
+      "available_zones": ["us-central1-a", "us-central1-c", "us-west1-a", "us-west1-b"]
+    },
+    {
+      "name": "a2-ultragpu-4g",
+      "family": "a2",
+      "vcpus": 48,
+      "memory_gb": 680,
+      "gpus": [
+        {
+          "type": "nvidia-a100-80gb",
+          "count": 4,
+          "vram_gb": 80,
+          "compute_capability": "8.0",
+          "tensor_cores": true,
+          "fp16_tflops": 624,
+          "bf16_tflops": 624,
+          "fp8_tflops": 1248,
+          "int8_tflops": 1248,
+          "memory_bw_gbps": 2039
+        }
+      ],
+      "ondemand_price_usd": 20.12,
+      "spot_price_usd": 6.04,
+      "network_bw_gbps": 32,
+      "available_zones": ["us-central1-a", "us-central1-c", "us-west1-a", "us-west1-b"]
+    },
+    {
+      "name": "a2-ultragpu-8g",
+      "family": "a2",
+      "vcpus": 96,
+      "memory_gb": 1360,
+      "gpus": [
+        {
+          "type": "nvidia-a100-80gb",
+          "count": 8,
+          "vram_gb": 80,
+          "compute_capability": "8.0",
+          "tensor_cores": true,
+          "fp16_tflops": 624,
+          "bf16_tflops": 624,
+          "fp8_tflops": 1248,
+          "int8_tflops": 1248,
+          "memory_bw_gbps": 2039
+        }
+      ],
+      "ondemand_price_usd": 40.24,
+      "spot_price_usd": 12.08,
+      "network_bw_gbps": 32,
+      "available_zones": ["us-central1-a", "us-central1-c", "us-west1-a", "us-west1-b"]
+    },
+    {
+      "name": "a3-highgpu-8g",
+      "family": "a3",
+      "vcpus": 208,
+      "memory_gb": 1872,
+      "gpus": [
+        {
+          "type": "nvidia-h100-80gb",
+          "count": 8,
+          "vram_gb": 80,
+          "compute_capability": "9.0",
+          "tensor_cores": true,
+          "fp16_tflops": 989,
+          "bf16_tflops": 989,
+          "fp8_tflops": 1979,
+          "int8_tflops": 3958,
+          "memory_bw_gbps": 3350
+        }
+      ],
+      "ondemand_price_usd": 80.00,
+      "spot_price_usd": 24.00,
+      "network_bw_gbps": 100,
+      "available_zones": ["us-central1-a", "us-west1-a"]
+    },
+    {
+      "name": "n1-standard-4-nvidia-t4-1",
+      "family": "n1",
+      "vcpus": 4,
+      "memory_gb": 15,
+      "gpus": [
+        {
+          "type": "nvidia-t4",
+          "count": 1,
+          "vram_gb": 16,
+          "compute_capability": "7.5",
+          "tensor_cores": true,
+          "fp16_tflops": 65,
+          "bf16_tflops": 65,
+          "fp8_tflops": 0,
+          "int8_tflops": 130,
+          "memory_bw_gbps": 320
+        }
+      ],
+      "ondemand_price_usd": 0.90,
+      "spot_price_usd": 0.27,
+      "network_bw_gbps": 10,
+      "available_zones": ["us-central1-a", "us-central1-b", "us-central1-c", "us-central1-f", "us-east1-b", "us-east1-c", "us-east1-d", "us-west1-a", "us-west1-b", "us-west1-c", "europe-west1-b", "europe-west1-c", "europe-west1-d", "asia-east1-a", "asia-east1-b", "asia-east1-c"]
+    },
+    {
+      "name": "n1-standard-8-nvidia-t4-1",
+      "family": "n1",
+      "vcpus": 8,
+      "memory_gb": 30,
+      "gpus": [
+        {
+          "type": "nvidia-t4",
+          "count": 1,
+          "vram_gb": 16,
+          "compute_capability": "7.5",
+          "tensor_cores": true,
+          "fp16_tflops": 65,
+          "bf16_tflops": 65,
+          "fp8_tflops": 0,
+          "int8_tflops": 130,
+          "memory_bw_gbps": 320
+        }
+      ],
+      "ondemand_price_usd": 1.15,
+      "spot_price_usd": 0.35,
+      "network_bw_gbps": 16,
+      "available_zones": ["us-central1-a", "us-central1-b", "us-central1-c", "us-central1-f", "us-east1-b", "us-east1-c", "us-east1-d", "us-west1-a", "us-west1-b", "us-west1-c", "europe-west1-b", "europe-west1-c", "europe-west1-d", "asia-east1-a", "asia-east1-b", "asia-east1-c"]
+    },
+    {
+      "name": "n1-standard-16-nvidia-t4-2",
+      "family": "n1",
+      "vcpus": 16,
+      "memory_gb": 60,
+      "gpus": [
+        {
+          "type": "nvidia-t4",
+          "count": 2,
+          "vram_gb": 16,
+          "compute_capability": "7.5",
+          "tensor_cores": true,
+          "fp16_tflops": 65,
+          "bf16_tflops": 65,
+          "fp8_tflops": 0,
+          "int8_tflops": 130,
+          "memory_bw_gbps": 320
+        }
+      ],
+      "ondemand_price_usd": 2.05,
+      "spot_price_usd": 0.62,
+      "network_bw_gbps": 32,
+      "available_zones": ["us-central1-a", "us-central1-b", "us-central1-c", "us-central1-f", "us-east1-b", "us-east1-c", "us-east1-d", "us-west1-a", "us-west1-b", "us-west1-c", "europe-west1-b", "europe-west1-c", "europe-west1-d", "asia-east1-a", "asia-east1-b", "asia-east1-c"]
+    },
+    {
+      "name": "n1-standard-32-nvidia-t4-4",
+      "family": "n1",
+      "vcpus": 32,
+      "memory_gb": 120,
+      "gpus": [
+        {
+          "type": "nvidia-t4",
+          "count": 4,
+          "vram_gb": 16,
+          "compute_capability": "7.5",
+          "tensor_cores": true,
+          "fp16_tflops": 65,
+          "bf16_tflops": 65,
+          "fp8_tflops": 0,
+          "int8_tflops": 130,
+          "memory_bw_gbps": 320
+        }
+      ],
+      "ondemand_price_usd": 3.85,
+      "spot_price_usd": 1.16,
+      "network_bw_gbps": 32,
+      "available_zones": ["us-central1-a", "us-central1-b", "us-central1-c", "us-central1-f", "us-east1-b", "us-east1-c", "us-east1-d", "us-west1-a", "us-west1-b", "us-west1-c", "europe-west1-b", "europe-west1-c", "europe-west1-d", "asia-east1-a", "asia-east1-b", "asia-east1-c"]
+    }
+  ]
+}
